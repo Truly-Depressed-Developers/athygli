@@ -13,6 +13,7 @@ import CSS from 'csstype';
 import { Typography } from '@mui/material'
 import { AppState, LabelType } from '@/types/Addiction'
 import moment from 'moment'
+import {SectionTitle} from "@/components/Main/SectionTitle/SectionTitle";
 // let addictions = [
 //     {
 //         name: "Alcohol",

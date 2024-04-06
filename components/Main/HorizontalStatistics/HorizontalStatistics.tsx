@@ -13,6 +13,7 @@ import CSS from 'csstype';
 import { Typography } from '@mui/material'
 import { AppState, LabelType } from '@/types/Addiction'
 import moment from 'moment'
+import {SectionTitle} from "@/components/Main/SectionTitle/SectionTitle";
 // let addictions = [
 //     {
 //         name: "Alcohol",
@@ -282,6 +283,7 @@ export const HorizontalStatistics: React.FC<{ appStateProps: AppState }> = ({ ap
             width: "100%"
         }}>
             <Paper sx={{ width: "100%", padding: 2, marginTop: 2, marginBottom: 2 }} elevation={2}>
+                <SectionTitle title={"Statistics"}/>
                 {
                     appStateProps[activeStep] != null ?
                         <div>
