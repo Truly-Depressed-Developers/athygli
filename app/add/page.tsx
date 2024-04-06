@@ -11,8 +11,8 @@ import {addictions} from "@/app/addictions";
 
 const Page: React.FC = () => {
   const [dateOO, setDateOO] = useState(moment());
-  const [add, setAdd] = useState("drinking");
-  const [times, setTimes] = useState(0);
+  const [add, setAdd] = useState("");
+  const [times, setTimes] = useState<number>(0);
 
   const changeAdd = (event: any) => {
     console.log(event.target.value);
@@ -50,6 +50,7 @@ const Page: React.FC = () => {
         <Select
           labelId="select-label"
           label="Addiction"
+          value={add}
           onChange={(e) => changeAdd(e)}
         >
           {Object.keys(Addiction).map((a) => <MenuItem key={a} value={a}>{a}</MenuItem>)}
@@ -77,9 +78,10 @@ const Page: React.FC = () => {
         <Select
           labelId="times-label"
           label="Number of times"
+          value={times}
           onChange={(e) => changeTimes(e)}
         >
-          {[1, 2, 3, 4, 5, 6].map((a) => <MenuItem key={a} value={a}>{a}</MenuItem>)}
+          {[0, 1, 2, 3, 4, 5, 6].map((a) => <MenuItem key={a} value={a}>{a}</MenuItem>)}
         </Select>
       </FormControl>
       <Button onClick={() => handleClick()} sx={{ margin: 2 }} color="primary" >Add occurance</Button>

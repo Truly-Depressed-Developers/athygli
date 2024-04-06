@@ -17,7 +17,8 @@ const SettingsGroupItem = <T extends Record<string, any>>(props: Props<T>) => {
         </AccordionSummary>
 
         <AccordionDetails>
-          <Typography sx={{color: "#bbb"}}>{props.description}</Typography>
+          {/*<Typography sx={{color: "#bbb"}}>{props.description}</Typography>*/}
+          {props.description}
         </AccordionDetails>
 
         <AccordionActions>

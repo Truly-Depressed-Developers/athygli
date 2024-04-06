@@ -81,7 +81,7 @@ const Page: React.FC = () => {
   const [appStateData, setAppStateData] = useState<AppState>(addictions);
   useEffect(() => {
     streaksData.sort((a, b) => b.streak - a.streak);
-    console.log(streaksData);
+    // console.log(streaksData);
     addStateData();
     setAppStateData(addictions);
     setStreaksData(streaksData);
@@ -90,7 +90,7 @@ const Page: React.FC = () => {
   const [activeQuote, _] = useState(0);
 
   const addStateData = () => {
-    console.log(moment());
+    // console.log(moment());
   }
   return (
     <Box sx={{

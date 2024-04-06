@@ -217,7 +217,7 @@ export const Statistics: React.FC<{ appStateProps: AppState }> = ({ appStateProp
 
         }
         setYearly(yearly);
-        console.log(yearly);
+        // console.log(yearly);
 
         monthly = [];
         let week = 1;
@@ -225,7 +225,7 @@ export const Statistics: React.FC<{ appStateProps: AppState }> = ({ appStateProp
         let canDo = false;
         // console.log("ff");
         for (let i = 27; i >= 0; i--) {
-            console.log(counter);
+            // console.log(counter);
             let d = new Date();
             d.setDate(d.getDate() - i);
             const mom = moment(d);
@@ -246,7 +246,7 @@ export const Statistics: React.FC<{ appStateProps: AppState }> = ({ appStateProp
             }
 
         }
-        console.log(monthly)
+        // console.log(monthly)
         setMonthly(monthly);
     }
 
