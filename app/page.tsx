@@ -1,6 +1,6 @@
 'use client'
 import {QuoteBar} from '@/components/Main/QuoteBar/QuoteBar';
-import {Statistics} from '@/components/Main/Statistics/Statistics';
+import {HorizontalStatistics} from '@/components/Main/HorizontalStatistics/HorizontalStatistics';
 import {StatusBar} from '@/components/Main/StatusBar/StatusBar';
 import {eachStreakType, StreaksBar} from '@/components/Main/StreaksBar/StreaksBar';
 import {AppState} from '@/types/Addiction';
@@ -101,9 +101,9 @@ const Page: React.FC = () => {
       alignItems: "center",
     }}>
       <StatusBar></StatusBar>
-      <QuoteBar quoteData={{ text: quoteData[activeQuote] }}></QuoteBar>
-      <StreaksBar streaksData={streaksData}></StreaksBar>
-      <Statistics appStateProps={appStateData}></Statistics>
+      {/*<QuoteBar quoteData={{ text: quoteData[activeQuote] }}></QuoteBar>*/}
+      {/*<StreaksBar streaksData={streaksData}></StreaksBar>*/}
+      <HorizontalStatistics appStateProps={appStateData}></HorizontalStatistics>
 
     </Box>
   );
