@@ -1,0 +1,18 @@
+.navbar {
+  height: 50px;
+  background-color: #1D1D1D;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  .text {
+    font-size: 10px;
+    color: #929292;
+  }
+
+  .blue {
+    font-size: 10px;
+    color: #018CFE;
+  }
+
+}
