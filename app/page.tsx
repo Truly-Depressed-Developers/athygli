@@ -1,61 +1,18 @@
 'use client'
-import { QuoteBar } from '@/components/Main/QuoteBar/QuoteBar';
-import { Statistics } from '@/components/Main/Statistics/Statistics';
-import { StatusBar } from '@/components/Main/StatusBar/StatusBar';
-import { StreaksBar } from '@/components/Main/StreaksBar/StreaksBar';
-import { eachStreakType } from '@/components/Main/StreaksBar/StreaksBar';
-import { Addiction, AppState } from '@/types/Addiction';
-import { Box } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import {QuoteBar} from '@/components/Main/QuoteBar/QuoteBar';
+import {Statistics} from '@/components/Main/Statistics/Statistics';
+import {StatusBar} from '@/components/Main/StatusBar/StatusBar';
+import {eachStreakType, StreaksBar} from '@/components/Main/StreaksBar/StreaksBar';
+import {AppState} from '@/types/Addiction';
+import {Box} from '@mui/material';
+import React, {useEffect, useState} from 'react';
 import moment from "moment";
+import {addictions} from "@/app/addictions";
 // import { useState } from 'react';
 
 const quoteData = [
   '"Success is the sum of small efforts – repeated day in and day out."',
   '"text2"'
-];
-
-export const addictions: AppState = [
-  {
-    addiction: Addiction.drinking,
-    data: [
-      { date: "21-01-2024", times: 0 },
-      { date: "20-01-2024", times: 2 },
-      { date: "19-01-2024", times: 2 },
-      { date: "18-01-2024", times: 5 },
-      { date: "17-01-2024", times: 2 },
-      { date: "16-01-2024", times: 0 },
-      { date: "15-01-2024", times: 2 },
-      { date: "14-01-2024", times: 1 },
-      { date: "13-01-2024", times: 2 },
-    ]
-  },
-  {
-    addiction: Addiction.smoking,
-    data: [
-      { date: "21-01-2024", times: 6 },
-      { date: "20-01-2024", times: 2 },
-      { date: "19-01-2024", times: 2 },
-      { date: "18-01-2024", times: 2 },
-      { date: "17-01-2024", times: 2 },
-      { date: "16-01-2024", times: 0 },
-      { date: "15-01-2024", times: 2 },
-      { date: "14-01-2024", times: 1 },
-      { date: "13-01-2024", times: 2 },
-    ]
-  },
-  {
-    addiction: Addiction.music,
-    data: []
-  },
-  {
-    addiction: Addiction.energyDrinks,
-    data: []
-  },
-  {
-    addiction: Addiction.drugs,
-    data: []
-  },
 ];
 
 let streaksDataDefault: eachStreakType[] = [
@@ -130,7 +87,7 @@ const Page: React.FC = () => {
     setStreaksData(streaksData);
   }, [streaksData, appStateData])
 
-  const [activeQuote, setActiveQuote] = useState(0);
+  const [activeQuote, _] = useState(0);
 
   const addStateData = () => {
     console.log(moment());

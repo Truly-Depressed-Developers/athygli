@@ -4,9 +4,10 @@ import { Box, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { Addiction } from "@/types/Addiction";
 import { DatePicker } from "@mui/x-date-pickers";
 import moment from "moment";
-import { SetStateAction, useState } from "react";
+import { useState } from "react";
 import Button from "@mui/material/Button";
-import { addictions } from "../page";
+
+import {addictions} from "@/app/addictions";
 
 const Page: React.FC = () => {
   const [dateOO, setDateOO] = useState(moment());

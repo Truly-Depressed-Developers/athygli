@@ -18,7 +18,7 @@ const mockIntegrations: Integration[] = [
 
 const mockSeverity: Severity[] = [
   {addiction: Addiction.drinking, level: SeverityLevel.low},
-  {addiction: Addiction.doomScrolling, level: SeverityLevel.medium},
+  // {addiction: Addiction.doomScrolling, level: SeverityLevel.medium},
   {addiction: Addiction.energyDrinks, level: SeverityLevel.none},
 ]
 
