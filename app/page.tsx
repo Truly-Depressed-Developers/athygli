@@ -83,7 +83,7 @@ const Page: React.FC = () => {
       justifyContent: "center",
       alignItems: "center",
     }}>
-      <StatusBar></StatusBar>
+      {/*<StatusBar></StatusBar>*/}
       <QuoteBar quoteData={{ text: quoteData[activeQuote] }}></QuoteBar>
       <StreaksBar streaksData={streaksData}></StreaksBar>
       <HorizontalStatistics appStateProps={appStateData}></HorizontalStatistics>

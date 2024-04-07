@@ -173,9 +173,9 @@ export const HorizontalStatistics: React.FC<{ appStateProps: AppState }> = ({ ap
                 { appStateProps[activeStep] != null &&
                     <div>
                         <Box sx={{mt: 1}}>
-                            <Typography sx={{fontSize: 12, color: GREY}}>Screen time</Typography>
-                            <Typography sx={{fontSize: 22}}>{totalFormattedTime}</Typography>
-                            <Typography sx={{fontSize: 10, color: GREY}}>{dateRange}</Typography>
+                            <Typography sx={{fontSize: 10, color: GREY}}>Screen time</Typography>
+                            <Typography sx={{fontSize: 20}}>{totalFormattedTime}</Typography>
+                            <Typography sx={{fontSize: 8, color: GREY}}>{dateRange}</Typography>
                         </Box>
                         <br/>
                         <Box sx={{width: "100%", display: "flex"}}>
@@ -261,7 +261,7 @@ export const HorizontalStatistics: React.FC<{ appStateProps: AppState }> = ({ ap
                                     display: 'flex'
                                 }}
                             >
-                                <Typography>Show more</Typography><KeyboardArrowDown />
+                                <Typography sx={{fontSize: 12}}>Show more</Typography><KeyboardArrowDown />
                             </Box>
                         </Box>
                     </div>
