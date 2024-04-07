@@ -105,7 +105,7 @@
 
   .articleList {
     width: 100%;
-    height: calc(100% - 330px);
+    height: calc(100% - 380px);
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -124,4 +124,10 @@
   font-size: smaller;
   color: gray;
   margin-top: 8px;
+}
+
+.articleLink{
+  &:hover, &:link, &:visited, &:active{
+    text-decoration: unset;
+  }
 }

@@ -1,4 +1,5 @@
 import styles from "./SmolArticle.module.scss";
+// import styles1 from "../page.module.scss";
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -14,7 +15,7 @@ import EventIcon from '@mui/icons-material/Event';
 export const SmolArticle: React.FC<ISmolArticle> = (articleData: ISmolArticle) => {
     return (
         <div className={styles.article}>
-            <Link href={"/articles/" + articleData.id}>
+            <Link href={"/articles/" + articleData.id} className={styles.articleLink}>
                 <Card sx={{ width: 390, borderRadius: 3, display: "flex", flexDirection: "row", backgroundColor: "#1D1D1D",
                     '& .MuiCardContent-root:last-child': {
                         paddingBottom: 1,

@@ -74,6 +74,7 @@ const Article: React.FC = () => {
             <div className={styles.mostWanted}>
                 {
                     article === undefined ? <div className={styles.loading}><Loading/></div> :
+                        <Link href={"/articles/" + article.id} className={styles.articleLink}>
                         <Card>
                             <CardMedia
                                 sx={{
@@ -86,10 +87,11 @@ const Article: React.FC = () => {
                             <div className={styles.gradient}></div>
                             <div className={styles.mostWantedText}>Most popular</div>
                             <div className={styles.mostWantedTitle}>{article.title}</div>
-                            <CardActions className={styles.button}>
-                                <Button size="small"><Link href={"/articles/" + article.id}>Learn More</Link></Button>
-                            </CardActions>
+                            {/*<CardActions className={styles.button}>*/}
+                            {/*    <Button size="small"></Button>*/}
+                            {/*</CardActions>*/}
                         </Card>
+                        </Link>
                 }
             </div>
             <div className={styles.selectedForYou}>Selected for You</div>

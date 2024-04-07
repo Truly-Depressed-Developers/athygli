@@ -5,3 +5,8 @@
         margin-top: 0;
     }
 }
+.articleLink{
+    &:hover, &:link, &:visited, &:active{
+        text-decoration: unset;
+    }
+}
