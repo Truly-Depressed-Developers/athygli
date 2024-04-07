@@ -12,11 +12,11 @@ export const Header: React.FC = () => {
   return (
     <div className={styles["header"]}>
       <span className={styles['sync']}>
-        Synchronized!
+        {/*Synchronized!*/}
       </span>
 
       <span className={[styles['name'], daysOne.className].join(" ")}>
-        ViceVigil
+        Athygli
       </span>
 
       <span className={styles["user-container"]}>
