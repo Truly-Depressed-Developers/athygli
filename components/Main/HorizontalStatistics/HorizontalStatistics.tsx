@@ -35,25 +35,25 @@ const screenTimes: ScreenTimes = {
         instagram: 157,
         snapchat: 112,
         tiktok: 63,
-        youtube: 54,
+        youtube: 24,
     },
     weekly: {
         instagram: 185,
         snapchat: 83,
-        tiktok: 98,
+        tiktok: 58,
         youtube: 45,
     },
     monthly: {
-        instagram: 163,
+        instagram: 204,
         snapchat: 85,
         tiktok: 59,
         youtube: 38,
     },
     yearly: {
-        instagram: 98,
-        snapchat: 56,
-        tiktok: 35,
-        youtube: 78,
+        instagram: 176,
+        snapchat: 96,
+        tiktok: 75,
+        youtube: 58,
     },
 }
 
@@ -154,7 +154,7 @@ export const HorizontalStatistics: React.FC<{ appStateProps: AppState }> = ({ ap
                             {/* Back */}
                         </Button>
                         {/*<Typography sx={{ display: "flex", alignItems: "center" }}>{appStateProps[activeStep].addiction}</Typography>*/}
-                        <Typography sx={{ display: "flex", alignItems: "center" }}>Screen time on apps</Typography>
+                        <Typography sx={{ display: "flex", alignItems: "center" }}>Screen time per app</Typography>
                         <Button
                             size="small"
                             onClick={handleNext}
@@ -173,7 +173,7 @@ export const HorizontalStatistics: React.FC<{ appStateProps: AppState }> = ({ ap
                 { appStateProps[activeStep] != null &&
                     <div>
                         <Box sx={{mt: 1}}>
-                            <Typography sx={{fontSize: 10, color: GREY}}>Screen time</Typography>
+                            <Typography sx={{fontSize: 10, color: GREY}}>Average daily screen time</Typography>
                             <Typography sx={{fontSize: 20}}>{totalFormattedTime}</Typography>
                             <Typography sx={{fontSize: 8, color: GREY}}>{dateRange}</Typography>
                         </Box>
