@@ -14,241 +14,63 @@ import { Typography } from '@mui/material'
 import { AppState, LabelType } from '@/types/Addiction'
 import moment from 'moment'
 import {SectionTitle} from "@/components/Main/SectionTitle/SectionTitle";
-// let addictions = [
-//     {
-//         name: "Alcohol",
-//         xAxis: [1, 2, 3, 5, 8, 10],
-//         yAxis: [2, 5.5, 2, 8.5, 1.5, 5]
-//     },
-//     {
-//         name: "Drugs",
-//         xAxis: [6, 3, 5, 5, 8, 1],
-//         yAxis: [8, 5.5, 5, 8.5, 3, 5]
-//     },
-//     {
-//         name: "Smoking",
-//         xAxis: [4, 4, 3, 5, 8, 10],
-//         yAxis: [8, 6, 2, 2, 1.5, 5]
-//     }
-// ];
 
-// const addictions = [
-//     {
-//         category: "Alcohol",
-//         info: {
-//             weekly: [
-//                 { label: "mon", times: 0 },
-//                 { label: "tue", times: 0 },
-//                 { label: "wed", times: 4 },
-//                 { label: "thu", times: 10 },
-//                 { label: "fri", times: 5 },
-//                 { label: "sat", times: 1 },
-//                 { label: "sun", times: 3 }
-//             ],
-//             monthly: [
-//                 { label: "1 week", times: 9 },
-//                 { label: "2 week", times: 9 },
-//                 { label: "3 week", times: 3 },
-//                 { label: "4 week", times: 4 }
-//             ],
-//             yearly: [
-//                 { label: "jan", times: 6 },
-//                 { label: "feb", times: 6 },
-//                 { label: "mar", times: 2 },
-//                 { label: "apr", times: 6 },
-//                 { label: "may", times: 9 },
-//                 { label: "jun", times: 7 },
-//                 { label: "jul", times: 3 },
-//                 { label: "aug", times: 10 },
-//                 { label: "sep", times: 0 },
-//                 { label: "oct", times: 10 },
-//                 { label: "nov", times: 5 },
-//                 { label: "dec", times: 8 }
-//             ]
-//         }
-//     },
-//     {
-//         category: "Smoking",
-//         info: {
-//             weekly: [
-//                 { label: "mon", times: 0 },
-//                 { label: "tue", times: 6 },
-//                 { label: "wed", times: 2 },
-//                 { label: "thu", times: 5 },
-//                 { label: "fri", times: 6 },
-//                 { label: "sat", times: 2 },
-//                 { label: "sun", times: 4 }
-//             ],
-//             monthly: [
-//                 { label: "1 week", times: 3 },
-//                 { label: "2 week", times: 1 },
-//                 { label: "3 week", times: 6 },
-//                 { label: "4 week", times: 9 }
-//             ],
-//             yearly: [
-//                 { label: "jan", times: 1 },
-//                 { label: "feb", times: 4 },
-//                 { label: "mar", times: 0 },
-//                 { label: "apr", times: 9 },
-//                 { label: "may", times: 0 },
-//                 { label: "jun", times: 0 },
-//                 { label: "jul", times: 9 },
-//                 { label: "aug", times: 5 },
-//                 { label: "sep", times: 1 },
-//                 { label: "oct", times: 6 },
-//                 { label: "nov", times: 7 },
-//                 { label: "dec", times: 1 }
-//             ]
-//         }
-//     },
-//     {
-//         category: "Drugs",
-//         info: {
-//             weekly: [
-//                 { label: "mon", times: 1 },
-//                 { label: "tue", times: 7 },
-//                 { label: "wed", times: 9 },
-//                 { label: "thu", times: 1 },
-//                 { label: "fri", times: 6 },
-//                 { label: "sat", times: 2 },
-//                 { label: "sun", times: 1 }
-//             ],
-//             monthly: [
-//                 { label: "1 week", times: 1 },
-//                 { label: "2 week", times: 3 },
-//                 { label: "3 week", times: 1 },
-//                 { label: "4 week", times: 10 }
-//             ],
-//             yearly: [
-//                 { label: "jan", times: 4 },
-//                 { label: "feb", times: 2 },
-//                 { label: "mar", times: 8 },
-//                 { label: "apr", times: 0 },
-//                 { label: "may", times: 0 },
-//                 { label: "jun", times: 6 },
-//                 { label: "jul", times: 6 },
-//                 { label: "aug", times: 7 },
-//                 { label: "sep", times: 8 },
-//                 { label: "oct", times: 3 },
-//                 { label: "nov", times: 3 },
-//                 { label: "dec", times: 6 }
-//             ]
-//         }
-//     }
-// ];
-type Weekday = {
-    label: string,
-    times: number
+export type Data = {
+    instagram: number,
+    snapchat: number,
+    tiktok: number,
+    youtube: number,
 }
 
-type MonthWeek = {
-    label: string,
-    times: number
+type ScreenTimes = {
+    daily: Data,
+    weekly: Data,
+    monthly: Data,
+    yearly: Data,
 }
 
-type YearMonth = {
-    label: string,
-    times: number
+const screenTimes: ScreenTimes = {
+    daily: {
+        instagram: 157,
+        snapchat: 112,
+        tiktok: 63,
+        youtube: 54,
+    },
+    weekly: {
+        instagram: 185,
+        snapchat: 83,
+        tiktok: 98,
+        youtube: 45,
+    },
+    monthly: {
+        instagram: 163,
+        snapchat: 85,
+        tiktok: 59,
+        youtube: 38,
+    },
+    yearly: {
+        instagram: 98,
+        snapchat: 56,
+        tiktok: 35,
+        youtube: 78,
+    },
 }
 
-type ToView = {
-    weekly: Weekday[]
-    monthly: MonthWeek[]
-}
-
-const months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec"
-]
-
+type Duration = "daily" | "weekly" | "monthly" | "yearly"
+const initialDuration = "weekly"
 
 export const HorizontalStatistics: React.FC<{ appStateProps: AppState }> = ({ appStateProps }) => {
     const theme = useTheme();
     const [maxSteps, setSteps] = React.useState(appStateProps.length);
     const [activeStep, setActiveStep] = React.useState(0);
-    const [activeInfo, setActiveInfo] = React.useState<"daily" | "weekly" | "monthly" | "yearly">("weekly");
-    const [today, setToday] = React.useState(moment(new Date()).format('DD-MM-YYYY'));
-    const [label, setLabel] = React.useState<LabelType[]>([]);
-    let [weekly, setWeekly] = React.useState<Weekday[]>([]);
-    let [monthly, setMonthly] = React.useState<MonthWeek[]>([]);
-    let [yearly, setYearly] = React.useState<YearMonth[]>([]);
+    const [activeDuration, setActiveDuration] = React.useState<Duration>(initialDuration);
+    let [data, setData] = React.useState<Data>(screenTimes[initialDuration]);
+
     useEffect(() => {
         update();
-
     }, []);
 
     const update = () => {
-        weekly = [];
-        for (let i = 6; i >= 0; i--) {
-            let d = new Date();
-            d.setDate(d.getDate() - i);
-            const mom = moment(d);
-            // console.log(mom.format('ddd'))
-            // label.push({ date: mom.format('DD-MM-YYYY'), label: mom.format('ddd') });
-            weekly.push({ label: mom.format('ddd'), times: appStateProps[activeStep].data[i].times });
-        }
-        setWeekly(weekly);
-
-        yearly = [];
-        // console.log(moment());
-        for (let i = 11; i >= 0; i--) {
-            let d = new Date();
-            // console.log((d.getMonth() + i) % 12);
-
-            const monthName = months[(d.getMonth() + i) % 12];
-            let times = 0;
-            appStateProps[activeStep].data.forEach(element => {
-                const dateof = moment(element.date, "DD-MM-YYYY");
-                if (dateof.month() == i) {
-                    times += element.times;
-                }
-                // console.log(dateof.month());
-            });
-            yearly.push({ label: monthName, times: times });
-
-        }
-        setYearly(yearly);
-        // console.log(yearly);
-
-        monthly = [];
-        let week = 1;
-        let counter = 0;
-        let canDo = false;
-        // console.log("ff");
-        for (let i = 27; i >= 0; i--) {
-            // console.log(counter);
-            let d = new Date();
-            d.setDate(d.getDate() - i);
-            const mom = moment(d);
-            let datePrev = new Date();
-            datePrev.setDate(datePrev.getDate() - i - 7);
-            const momPrev = moment(datePrev);
-            if (appStateProps[activeStep].data[i]) {
-                counter += appStateProps[activeStep].data[i].times;
-            }
-            if (i % 7 == 0) {
-                canDo = true;
-            }
-            if (canDo) {
-                // console.log(momPrev, mom)
-                monthly.push({ label: `${momPrev.format('DD.MM')} - ${mom.format('DD.MM')}`, times: counter });
-                counter = 0;
-                canDo = false;
-            }
-
-        }
-        // console.log(monthly)
-        setMonthly(monthly);
     }
 
     const handleNext = () => {
@@ -265,8 +87,9 @@ export const HorizontalStatistics: React.FC<{ appStateProps: AppState }> = ({ ap
         setActiveStep(step);
     };
 
-    const handleInfoChange = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, val: "daily" | "weekly" | "monthly" | "yearly") => {
-        setActiveInfo(val);
+    const handleInfoChange = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, val: Duration) => {
+        setActiveDuration(val);
+        setData(screenTimes[val])
     }
 
     const inactiveButton: CSS.Properties = {
@@ -284,26 +107,44 @@ export const HorizontalStatistics: React.FC<{ appStateProps: AppState }> = ({ ap
         }}>
             <Paper sx={{ width: "100%", padding: 2, marginTop: 2, marginBottom: 2 }} elevation={2}>
                 <SectionTitle title={"Statistics"}/>
+                <Box sx={{ width: "100%", marginTop: 2, display: "flex", justifyContent: "center" }}>
+                    <Box sx={{ width: "80%", display: "flex", justifyContent: "space-between" }}>
+                        <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+                            {theme.direction === 'rtl' ? (
+                                <KeyboardArrowRight />
+                            ) : (
+                                <KeyboardArrowLeft />
+                            )}
+                            {/* Back */}
+                        </Button>
+                        {/*<Typography sx={{ display: "flex", alignItems: "center" }}>{appStateProps[activeStep].addiction}</Typography>*/}
+                        <Typography sx={{ display: "flex", alignItems: "center" }}>Screen time on apps</Typography>
+                        <Button
+                            size="small"
+                            onClick={handleNext}
+                            disabled={activeStep === maxSteps - 1}
+                        >
+                            {/* Next */}
+                            {theme.direction === 'rtl' ? (
+                                <KeyboardArrowLeft />
+                            ) : (
+                                <KeyboardArrowRight />
+                            )}
+                        </Button>
+                    </Box>
+
+                </Box>
                 {
                     appStateProps[activeStep] != null ?
                         <div>
-                            {
-                                activeInfo === "weekly" ?
-                                    <HorizontalStatisticsChart info={weekly}></HorizontalStatisticsChart>
-                                    : (activeInfo === "monthly") ?
-                                        <HorizontalStatisticsChart info={monthly}></HorizontalStatisticsChart>
-                                        : (activeInfo === "yearly") ?
-                                            <HorizontalStatisticsChart info={yearly}></HorizontalStatisticsChart>
-                                            :
-                                            null
-                            }
+                            <HorizontalStatisticsChart data={data}></HorizontalStatisticsChart>
                             <Box sx={{ width: "100%", display: "flex", justifyContent: "center" }}>
                                 <ButtonGroup sx={{ borderRadius: "8px", backgroundColor: "#343434", padding: 0 }} variant="contained" aria-label="outlined primary button group">
                                     <Button
                                         style={inactiveButton}
                                         sx={{
-                                            backgroundColor: activeInfo === "daily" ? "white" : "transparent",
-                                            color: activeInfo === "daily" ? "black" : "white",
+                                            backgroundColor: activeDuration === "daily" ? "white" : "transparent",
+                                            color: activeDuration === "daily" ? "black" : "white",
                                             "&:hover": {
                                                 backgroundColor: "white",
                                             },
@@ -315,8 +156,8 @@ export const HorizontalStatistics: React.FC<{ appStateProps: AppState }> = ({ ap
                                     <Button
                                         style={inactiveButton}
                                         sx={{
-                                            backgroundColor: activeInfo === "weekly" ? "white" : "transparent",
-                                            color: activeInfo === "weekly" ? "black" : "white",
+                                            backgroundColor: activeDuration === "weekly" ? "white" : "transparent",
+                                            color: activeDuration === "weekly" ? "black" : "white",
                                             "&:hover": {
                                                 backgroundColor: "white",
                                             },
@@ -328,8 +169,8 @@ export const HorizontalStatistics: React.FC<{ appStateProps: AppState }> = ({ ap
                                     <Button
                                         style={inactiveButton}
                                         sx={{
-                                            backgroundColor: activeInfo === "monthly" ? "white" : "transparent",
-                                            color: activeInfo === "monthly" ? "black" : "white",
+                                            backgroundColor: activeDuration === "monthly" ? "white" : "transparent",
+                                            color: activeDuration === "monthly" ? "black" : "white",
                                             "&:hover": {
                                                 backgroundColor: "white",
                                             },
@@ -341,8 +182,8 @@ export const HorizontalStatistics: React.FC<{ appStateProps: AppState }> = ({ ap
                                     <Button
                                         style={inactiveButton}
                                         sx={{
-                                            backgroundColor: activeInfo === "yearly" ? "white" : "transparent",
-                                            color: activeInfo === "yearly" ? "black" : "white",
+                                            backgroundColor: activeDuration === "yearly" ? "white" : "transparent",
+                                            color: activeDuration === "yearly" ? "black" : "white",
                                             "&:hover": {
                                                 backgroundColor: "white",
                                             },
@@ -353,32 +194,7 @@ export const HorizontalStatistics: React.FC<{ appStateProps: AppState }> = ({ ap
                                     </Button>
                                 </ButtonGroup>
                             </Box>
-                            <Box sx={{ width: "100%", marginTop: 2, display: "flex", justifyContent: "center" }}>
-                                <Box sx={{ width: "80%", display: "flex", justifyContent: "space-between" }}>
-                                    <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-                                        {theme.direction === 'rtl' ? (
-                                            <KeyboardArrowRight />
-                                        ) : (
-                                            <KeyboardArrowLeft />
-                                        )}
-                                        {/* Back */}
-                                    </Button>
-                                    <Typography sx={{ display: "flex", alignItems: "center" }}>{appStateProps[activeStep].addiction}</Typography>
-                                    <Button
-                                        size="small"
-                                        onClick={handleNext}
-                                        disabled={activeStep === maxSteps - 1}
-                                    >
-                                        {/* Next */}
-                                        {theme.direction === 'rtl' ? (
-                                            <KeyboardArrowLeft />
-                                        ) : (
-                                            <KeyboardArrowRight />
-                                        )}
-                                    </Button>
-                                </Box>
 
-                            </Box>
                         </div>
                         :
                         null

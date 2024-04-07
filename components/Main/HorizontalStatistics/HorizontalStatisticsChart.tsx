@@ -1,45 +1,24 @@
-import styles from "./Navbar.module.scss";
-import Paper from '@mui/material/Paper';
-import Typography from "@mui/material/Typography";
 import React from 'react';
-import { BarChart } from '@mui/x-charts/BarChart';
-import { ArgumentAxis, BarSeries, Chart, Title, ValueAxis } from "@devexpress/dx-react-chart-material-ui";
-import { Palette } from '@devexpress/dx-react-chart';
+import { ArgumentAxis, BarSeries, Chart, ValueAxis } from "@devexpress/dx-react-chart-material-ui";
 import Box from "@mui/material/Box";
-import { LabelType } from "@/types/Addiction";
+import {Data} from "@/components/Main/HorizontalStatistics/HorizontalStatistics";
+import {ScreenTimeElement} from "./ScreenTimeElement/ScreenTimeElement";
 
 
-type DatailedInfo = {
-    label: string,
-    times: number
-}
-
-type DataStatistics = {
-    info: DatailedInfo[]
-
-}
-
-
-export const HorizontalStatisticsChart: React.FC<DataStatistics> = (statProps: DataStatistics) => {
+export const HorizontalStatisticsChart = ({ data } : { data: Data }) => {
+    const maxDuration = Math.max(...Object.values(data))
     return (
-
         <Box>
             {
-                statProps != null ?
-                    <div>
-                        <Chart height={230} data={statProps.info}>
-                            <ArgumentAxis />
-                            <ValueAxis showGrid={false} />
-                            <BarSeries color="#E65900" valueField="times" argumentField="label" />
-                        </Chart>
-                    </div>
-                    :
-                    null
+                Object.entries(data).map(([key, value]) =>
+                    <ScreenTimeElement
+                        key={key}
+                        social={key}
+                        duration={value}
+                        maxDuration={maxDuration}
+                    />
+                )
             }
-
         </Box>
-        // </Paper>
-        // <div>Statistics</div>
     )
 }
-
