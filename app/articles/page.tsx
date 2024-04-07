@@ -24,7 +24,11 @@ const Article: React.FC = () => {
     }
 
     const selectCategory = (event: any) => {
-        setSelectedCategory(event.target.innerText.toLowerCase());
+        if (selectedCategory == event.target.innerText.toLowerCase()) {
+            setSelectedCategory("");
+        } else {
+            setSelectedCategory(event.target.innerText.toLowerCase());
+        }
     }
 
     useEffect(() => {
@@ -56,7 +60,9 @@ const Article: React.FC = () => {
               <Button variant="outlined" onClick={selectCategory} key={i} style={{
                   borderColor: "#E65900",
                   backgroundColor: el == selectedCategory ? "#E65900" : "",
-                  color: "white"
+                  color: "white",
+                  borderRadius: 8,
+                  textTransform: "capitalize"
               }}>
                 {el}
               </Button>
@@ -78,7 +84,7 @@ const Article: React.FC = () => {
                                 title="articlePhoto"
                             />
                             <div className={styles.gradient}></div>
-                            <div className={styles.mostWantedText}>Selected for You</div>
+                            <div className={styles.mostWantedText}>Most popular</div>
                             <div className={styles.mostWantedTitle}>{article.title}</div>
                             <CardActions className={styles.button}>
                                 <Button size="small"><Link href={"/articles/" + article.id}>Learn More</Link></Button>
@@ -86,6 +92,7 @@ const Article: React.FC = () => {
                         </Card>
                 }
             </div>
+            <div className={styles.selectedForYou}>Selected for You</div>
             <div className={styles.articleList}>
                 {articles.filter((el) => {
                     if (selectedCategory !== "") {
@@ -94,7 +101,8 @@ const Article: React.FC = () => {
                         return el;
                     }
                 }).map((el, i) => {
-                    return <SmolArticle key={i} id={el.id} title={el.title} photoID={el.photoID} author={el.author} time={el.time} timeToRead={el.timeToRead}/>
+                    return <SmolArticle key={i} id={el.id} title={el.title} photoID={el.photoID} author={el.author}
+                                        time={el.time} timeToRead={el.timeToRead}/>
                 })}
             </div>
         </div>

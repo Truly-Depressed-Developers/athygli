@@ -44,6 +44,7 @@
     width: inherit;
     height: 250px;
     z-index: 0;
+    margin-top: 16px;
 
     .card {
       z-index: 0;
@@ -77,7 +78,7 @@
 
     .mostWantedText {
       position: relative;
-      top: -458px;
+      top: -466px;
       left: 0;
       font-size: smaller;
       color: gray;
@@ -117,4 +118,10 @@
       display: none;
     }
   }
+}
+
+.selectedForYou {
+  font-size: smaller;
+  color: gray;
+  margin-top: 8px;
 }
