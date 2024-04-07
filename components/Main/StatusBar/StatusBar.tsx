@@ -1,7 +1,7 @@
 import Paper from '@mui/material/Paper'
-import React, { useState } from 'react'
-import { EachStatus } from './EachStatus'
-import { Typography } from '@mui/material'
+import React, {useState} from 'react'
+import {EachStatus} from './EachStatus'
+import {SectionTitle} from "@/components/Main/SectionTitle/SectionTitle";
 
 const statusArray = [
     {
@@ -29,7 +29,7 @@ export const StatusBar: React.FC = () => {
             padding: 2,
             borderRadius: "8px"
         }}>
-            <Typography sx={{ marginBottom: 1 }}>Status</Typography>
+            <SectionTitle title={"Status"}/>
             <EachStatus data={statusArray[activeStatus]}></EachStatus>
         </Paper>
     )
