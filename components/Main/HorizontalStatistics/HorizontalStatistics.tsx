@@ -6,6 +6,7 @@ import MobileStepper from '@mui/material/MobileStepper'
 import Button from '@mui/material/Button'
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
+import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown'
 import { useTheme } from '@mui/material/styles';
 import Paper from '@mui/material/Paper'
 import ButtonGroup from '@mui/material/ButtonGroup'
@@ -59,6 +60,19 @@ const screenTimes: ScreenTimes = {
 type Duration = "daily" | "weekly" | "monthly" | "yearly"
 const initialDuration = "weekly"
 
+function shortDate(date: Date): string {
+    const day = date.getDate();
+    const monthIndex = date.getMonth();
+    const monthNames = [
+        "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+    ];
+
+    return `${day} ${monthNames[monthIndex]}`;
+}
+
+export const GREY = "#bbbbbb"
+
 export const HorizontalStatistics: React.FC<{ appStateProps: AppState }> = ({ appStateProps }) => {
     const theme = useTheme();
     const [maxSteps, setSteps] = React.useState(appStateProps.length);
@@ -83,10 +97,6 @@ export const HorizontalStatistics: React.FC<{ appStateProps: AppState }> = ({ ap
         update();
     };
 
-    const handleStepChange = (step: number) => {
-        setActiveStep(step);
-    };
-
     const handleInfoChange = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, val: Duration) => {
         setActiveDuration(val);
         setData(screenTimes[val])
@@ -101,15 +111,41 @@ export const HorizontalStatistics: React.FC<{ appStateProps: AppState }> = ({ ap
         width: "65px"
     };
 
+    const totalDuration = Object.values(data).reduce((acc, cur) => acc + cur, 0)
+    const totalHours = Math.floor(totalDuration / 60)
+    const totalMinutes = totalDuration - totalHours * 60
+    const totalFormattedTime = totalHours == 0 ? `${totalMinutes}m` : `${totalHours}h ${totalMinutes}m`
+
+    const now = new Date()
+    let dateRange = ''
+    if (activeDuration == "daily") {
+        dateRange = shortDate(now)
+    } else if (activeDuration == "weekly") {
+        const prevDate = new Date(now)
+        prevDate.setDate(now.getDate() - 6);
+        dateRange = `${shortDate(prevDate)} - ${shortDate(now)}`
+    } else if (activeDuration == "monthly") {
+        const prevDate = new Date(now)
+        prevDate.setDate(now.getDate() - 30);
+        dateRange = `${shortDate(prevDate)} - ${shortDate(now)}`
+    } else if (activeDuration == "yearly") {
+        const prevDate = new Date(now)
+        prevDate.setDate(now.getDate() - 365);
+        dateRange = `${shortDate(prevDate)} - ${shortDate(now)}`
+    }
+
     return (
         <Box sx={{
             width: "100%"
         }}>
             <Paper sx={{ width: "100%", padding: 2, marginTop: 2, marginBottom: 2 }} elevation={2}>
                 <SectionTitle title={"Statistics"}/>
-                <Box sx={{ width: "100%", marginTop: 2, display: "flex", justifyContent: "center" }}>
-                    <Box sx={{ width: "80%", display: "flex", justifyContent: "space-between" }}>
-                        <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+                <Box sx={{ width: "100%", marginTop: 2, display: "flex" }}>
+                    <Box sx={{ width: "100%", display: "flex", justifyContent: "space-between" }}>
+                        <Button
+                            onClick={handleBack}
+                            disabled={activeStep === 0}
+                        >
                             {theme.direction === 'rtl' ? (
                                 <KeyboardArrowRight />
                             ) : (
@@ -134,75 +170,102 @@ export const HorizontalStatistics: React.FC<{ appStateProps: AppState }> = ({ ap
                     </Box>
 
                 </Box>
-                {
-                    appStateProps[activeStep] != null ?
-                        <div>
-                            <HorizontalStatisticsChart data={data}></HorizontalStatisticsChart>
-                            <Box sx={{ width: "100%", display: "flex", justifyContent: "center" }}>
-                                <ButtonGroup sx={{ borderRadius: "8px", backgroundColor: "#343434", padding: 0 }} variant="contained" aria-label="outlined primary button group">
-                                    <Button
-                                        style={inactiveButton}
-                                        sx={{
-                                            backgroundColor: activeDuration === "daily" ? "white" : "transparent",
-                                            color: activeDuration === "daily" ? "black" : "white",
-                                            "&:hover": {
-                                                backgroundColor: "white",
-                                            },
-                                        }}
-                                        onClick={(e) => handleInfoChange(e, "daily")}
-                                    >
-                                        D
-                                    </Button>
-                                    <Button
-                                        style={inactiveButton}
-                                        sx={{
-                                            backgroundColor: activeDuration === "weekly" ? "white" : "transparent",
-                                            color: activeDuration === "weekly" ? "black" : "white",
-                                            "&:hover": {
-                                                backgroundColor: "white",
-                                            },
-                                        }}
-                                        onClick={(e) => handleInfoChange(e, "weekly")}
-                                    >
-                                        W
-                                    </Button>
-                                    <Button
-                                        style={inactiveButton}
-                                        sx={{
-                                            backgroundColor: activeDuration === "monthly" ? "white" : "transparent",
-                                            color: activeDuration === "monthly" ? "black" : "white",
-                                            "&:hover": {
-                                                backgroundColor: "white",
-                                            },
-                                        }}
-                                        onClick={(e) => handleInfoChange(e, "monthly")}
-                                    >
-                                        M
-                                    </Button>
-                                    <Button
-                                        style={inactiveButton}
-                                        sx={{
-                                            backgroundColor: activeDuration === "yearly" ? "white" : "transparent",
-                                            color: activeDuration === "yearly" ? "black" : "white",
-                                            "&:hover": {
-                                                backgroundColor: "white",
-                                            },
-                                        }}
-                                        onClick={(e) => handleInfoChange(e, "yearly")}
-                                    >
-                                        Y
-                                    </Button>
-                                </ButtonGroup>
+                { appStateProps[activeStep] != null &&
+                    <div>
+                        <Box sx={{mt: 1}}>
+                            <Typography sx={{fontSize: 12, color: GREY}}>Screen time</Typography>
+                            <Typography sx={{fontSize: 22}}>{totalFormattedTime}</Typography>
+                            <Typography sx={{fontSize: 10, color: GREY}}>{dateRange}</Typography>
+                        </Box>
+                        <br/>
+                        <Box sx={{width: "100%", display: "flex"}}>
+                            <ButtonGroup
+                                sx={{
+                                    borderRadius: "8px",
+                                    backgroundColor: "#343434",
+                                    padding: 0,
+                                    width: '100%',
+                                }}
+                                variant="contained"
+                                aria-label="outlined primary button group"
+                            >
+                                <Button
+                                    style={inactiveButton}
+                                    sx={{
+                                        backgroundColor: activeDuration === "daily" ? "white" : "transparent",
+                                        color: activeDuration === "daily" ? "black" : "white",
+                                        "&:hover": {
+                                            backgroundColor: "white",
+                                        },
+                                        flexGrow: 1
+                                    }}
+                                    onClick={(e) => handleInfoChange(e, "daily")}
+                                >
+                                    D
+                                </Button>
+                                <Button
+                                    style={inactiveButton}
+                                    sx={{
+                                        backgroundColor: activeDuration === "weekly" ? "white" : "transparent",
+                                        color: activeDuration === "weekly" ? "black" : "white",
+                                        "&:hover": {
+                                            backgroundColor: "white",
+                                        },
+                                        flexGrow: 1
+                                    }}
+                                    onClick={(e) => handleInfoChange(e, "weekly")}
+                                >
+                                    W
+                                </Button>
+                                <Button
+                                    style={inactiveButton}
+                                    sx={{
+                                        backgroundColor: activeDuration === "monthly" ? "white" : "transparent",
+                                        color: activeDuration === "monthly" ? "black" : "white",
+                                        "&:hover": {
+                                            backgroundColor: "white",
+                                        },
+                                        flexGrow: 1
+                                    }}
+                                    onClick={(e) => handleInfoChange(e, "monthly")}
+                                >
+                                    M
+                                </Button>
+                                <Button
+                                    style={inactiveButton}
+                                    sx={{
+                                        backgroundColor: activeDuration === "yearly" ? "white" : "transparent",
+                                        color: activeDuration === "yearly" ? "black" : "white",
+                                        "&:hover": {
+                                            backgroundColor: "white",
+                                        },
+                                        flexGrow: 1
+                                    }}
+                                    onClick={(e) => handleInfoChange(e, "yearly")}
+                                >
+                                    Y
+                                </Button>
+                            </ButtonGroup>
+                        </Box>
+                        <br/>
+                        <HorizontalStatisticsChart data={data}></HorizontalStatisticsChart>
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                mt: 2
+                            }}
+                        >
+                            <Box
+                                sx={{
+                                    display: 'flex'
+                                }}
+                            >
+                                <Typography>Show more</Typography><KeyboardArrowDown />
                             </Box>
-
-                        </div>
-                        :
-                        null
-
-
+                        </Box>
+                    </div>
                 }
-
-
             </Paper>
         </Box>
     )
