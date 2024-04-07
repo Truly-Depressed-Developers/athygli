@@ -14,30 +14,33 @@ import EventIcon from '@mui/icons-material/Event';
 export const SmolArticle: React.FC<ISmolArticle> = (articleData: ISmolArticle) => {
     return (
         <div className={styles.article}>
-            <Card sx={{ width: 390, borderRadius: 3, display: "flex", flexDirection: "row", backgroundColor: "#1D1D1D" }}>
-                <CardMedia
-                    sx={{ height: 150, minWidth: 120 }}
-                    image={"/articleImages/" + articleData.photoID + ".jpg"}
-                    title="articlePhoto"
-                />
-                <CardContent>
-                    <Typography gutterBottom component="div" style={{color:"grey", fontSize:"10px"}}>
-                        {articleData.author}
-                    </Typography>
-                    <Typography gutterBottom component="div">
-                        {articleData.title}
-                    </Typography>
-                    <Typography style={{display:"flex", alignItems:"center"}}>
-                        <AccessTimeIcon style={{color:"grey", width:"15px"}}/>
-                        <span style={{fontSize: "10px", marginRight:"10px", marginLeft:"5px"}}> {articleData.time} </span>
-                        <EventIcon style={{color: "grey", width: "15px"}}/>
-                        <span style={{fontSize: "10px", marginRight:"10px", marginLeft:"5px"}}> {articleData.timeToRead} </span>
-                    </Typography>
-                </CardContent>
-                <CardActions>
-                    <Button size="small"><Link href={"/articles/" + articleData.id}>Learn More</Link></Button>
-                </CardActions>
-            </Card>
+            <Link href={"/articles/" + articleData.id}>
+                <Card sx={{ width: 390, borderRadius: 3, display: "flex", flexDirection: "row", backgroundColor: "#1D1D1D",
+                    '& .MuiCardContent-root:last-child': {
+                        paddingBottom: 1,
+                    },
+                }}>
+                    <CardMedia
+                        sx={{ minWidth: 120, maxHeight: 110 }}
+                        image={"/articleImages/" + articleData.photoID + ".jpg"}
+                        title="articlePhoto"
+                    />
+                    <CardContent sx={{paddingTop: 1}} >
+                        <Typography gutterBottom component="div" style={{color:"grey", fontSize:"10px"}}>
+                            {articleData.author}
+                        </Typography>
+                        <Typography gutterBottom component="div">
+                            {articleData.title}
+                        </Typography>
+                        <Typography style={{display:"flex", alignItems:"center"}}>
+                            <AccessTimeIcon style={{color:"grey", width:"15px"}}/>
+                            <span style={{fontSize: "10px", marginRight:"10px", marginLeft:"5px"}}> {articleData.time} </span>
+                            <EventIcon style={{color: "grey", width: "15px"}}/>
+                            <span style={{fontSize: "10px", marginRight:"10px", marginLeft:"5px"}}> {articleData.timeToRead} </span>
+                        </Typography>
+                    </CardContent>
+                </Card>
+            </Link>
         </div>
     )
 }
