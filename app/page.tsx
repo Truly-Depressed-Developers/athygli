@@ -11,31 +11,14 @@ import {addictions} from "@/app/addictions";
 // import { useState } from 'react';
 
 const quoteData = [
-  '"Success is the sum of small efforts – repeated day in and day out."',
-  '"text2"'
+  'In a time equal to 30 minutes you are able to watch about 1/3 of a movie like Shrek',
 ];
 
 let streaksDataDefault: eachStreakType[] = [
-  {
-    streak: 12,
-    type: "Not drinking"
-  },
-  {
-    streak: 10,
-    type: "Not smoking"
-  },
-  {
-    streak: 8,
-    type: "Not listening to music"
-  },
-  {
-    streak: 3,
-    type: "Not drinking energy drinks"
-  },
-  {
-    streak: 3,
-    type: "Not taking drugs"
-  }
+  // {
+  //   streak: 12,
+  //   type: "Not drinking"
+  // },
 ]
 
 // const addictions: AppState = [
@@ -101,8 +84,8 @@ const Page: React.FC = () => {
       alignItems: "center",
     }}>
       <StatusBar></StatusBar>
-      {/*<QuoteBar quoteData={{ text: quoteData[activeQuote] }}></QuoteBar>*/}
-      {/*<StreaksBar streaksData={streaksData}></StreaksBar>*/}
+      <QuoteBar quoteData={{ text: quoteData[activeQuote] }}></QuoteBar>
+      <StreaksBar streaksData={streaksData}></StreaksBar>
       <HorizontalStatistics appStateProps={appStateData}></HorizontalStatistics>
 
     </Box>
