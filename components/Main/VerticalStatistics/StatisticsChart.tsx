@@ -6,7 +6,7 @@ import { BarChart } from '@mui/x-charts/BarChart';
 import { ArgumentAxis, BarSeries, Chart, Title, ValueAxis } from "@devexpress/dx-react-chart-material-ui";
 import { Palette } from '@devexpress/dx-react-chart';
 import Box from "@mui/material/Box";
-import { LabelType } from "@/types/Addiction";
+import { LabelType } from "@/types/SeverityType";
 
 
 type DatailedInfo = {

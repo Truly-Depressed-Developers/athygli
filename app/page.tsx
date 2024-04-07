@@ -3,7 +3,7 @@ import {QuoteBar} from '@/components/Main/QuoteBar/QuoteBar';
 import {HorizontalStatistics} from '@/components/Main/HorizontalStatistics/HorizontalStatistics';
 import {StatusBar} from '@/components/Main/StatusBar/StatusBar';
 import {eachStreakType, StreaksBar} from '@/components/Main/StreaksBar/StreaksBar';
-import {AppState} from '@/types/Addiction';
+import {AppState} from '@/types/SeverityType';
 import {Box} from '@mui/material';
 import React, {useEffect, useState} from 'react';
 import moment from "moment";
@@ -11,7 +11,7 @@ import {addictions} from "@/app/addictions";
 // import { useState } from 'react';
 
 const quoteData = [
-  'In a time equal to 30 minutes you are able to watch about 1/3 of a movie like Shrek',
+  <>In a time equal to <b>60 minutes</b> you are able to watch about 2/3 of a movie like Shrek</>,
 ];
 
 let streaksDataDefault: eachStreakType[] = [

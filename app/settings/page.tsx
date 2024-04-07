@@ -4,22 +4,23 @@ import {Box, Divider, Paper, ToggleButton, ToggleButtonGroup, Typography} from "
 import {Integration} from "@/types/Integration";
 import {SettingsGroup} from "@/app/settings/SettingsGroup/SettingsGroup";
 import {Severity} from "@/types/Severity";
-import {Addiction} from "@/types/Addiction";
+import {SeverityType} from "@/types/SeverityType";
 import {SeverityLevel} from "@/types/SeverityLevel";
 import {resolveSeverityEffect} from "@/util/resolveSeverityEffect";
 import Button from "@mui/material/Button";
 
 const mockIntegrations: Integration[] = [
+  {name: "This device", description: "Some information about device, what type of information this device collect. Lorem ipsum Lorem ipsum Lorem ipsum  Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum  Lorem ipsum Lorem ipsum."},
   {name: "Amazfit GTS 2 Mini", description: "Tracks movement, heartbeat, pressure; detects drunkenness and addiction related to physical activity"},
-  {name: "Facebook account", description: "Tracks usage of social media (both passive and active) and addictions associated with them"},
-  {name: "Instagram account", description: "Tracks usage of social media (both passive and active) and addictions associated with them"},
-  {name: "ScreenTime", description: "Tracks usage of apps on your phone and addictions associated with them"},
+  {name: "Google Chrome - Home", description: "Lorem ipsum"},
+  {name: "Google Chrome - Samsung", description: "Lorem ipsum"},
+  // {name: "ScreenTime", description: "Tracks usage of apps on your phone and addictions associated with them"},
 ]
 
 const mockSeverity: Severity[] = [
-  {addiction: Addiction.drinking, level: SeverityLevel.low},
-  {addiction: Addiction.smoking, level: SeverityLevel.medium},
-  {addiction: Addiction.energyDrinks, level: SeverityLevel.none},
+  {type: SeverityType.notifications, level: SeverityLevel.medium},
+  {type: SeverityType.screenTime, level: SeverityLevel.none},
+  {type: SeverityType.activities, level: SeverityLevel.none},
 ]
 
 const Page: React.FC = () => {
@@ -30,13 +31,14 @@ const Page: React.FC = () => {
           sx={{paddingX: 2, paddingY: 1.5, display: "flex", justifyContent: "space-between", alignItems: "center"}}
         >
           <Typography>Integrations</Typography>
-          <Button>Add new</Button>
+          <Button sx={{textTransform: "none", color: "#018cfe", fontSize: 16}}>Add new</Button>
         </Box>
         <Divider/>
         <SettingsGroup
           items={mockIntegrations}
+          addButton={false}
           header={item => item.name}
-          summary={item => item.description}
+          summary={item => <Typography sx={{color: "#929292", fontSize: 12}}>{item.description}</Typography>}
         />
       </Paper>
 
@@ -51,7 +53,8 @@ const Page: React.FC = () => {
         <Divider/>
         <SettingsGroup
           items={mockSeverity}
-          header={item => item.addiction}
+          addButton={true}
+          header={item => item.type}
           summary={item =>
             <>
               <ToggleButtonGroup fullWidth color="primary" value={item.level}>
@@ -63,7 +66,7 @@ const Page: React.FC = () => {
 
               <Box sx={{p: 1}} />
 
-              <Typography sx={{color: "#bbb"}}>{resolveSeverityEffect(item.addiction, item.level)}</Typography>
+              <Typography sx={{color: "#929292", fontSize: 12}}>{resolveSeverityEffect(item.type, item.level)}</Typography>
             </>
           }
         />

@@ -1,7 +1,7 @@
 'use client'
 
 import {Box, FormControl, InputLabel, MenuItem, Select, Input, SelectChangeEvent} from "@mui/material";
-import {Addiction} from "@/types/Addiction";
+import {SeverityType} from "@/types/SeverityType";
 import {DatePicker} from "@mui/x-date-pickers";
 import moment from "moment";
 import {useState} from "react";

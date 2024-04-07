@@ -12,7 +12,7 @@ import Paper from '@mui/material/Paper'
 import ButtonGroup from '@mui/material/ButtonGroup'
 import CSS from 'csstype';
 import { Typography } from '@mui/material'
-import { AppState, LabelType } from '@/types/Addiction'
+import { AppState, LabelType } from '@/types/SeverityType'
 import moment from 'moment'
 import {SectionTitle} from "@/components/Main/SectionTitle/SectionTitle";
 

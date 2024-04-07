@@ -1,7 +1,7 @@
-import {Addiction} from "@/types/Addiction";
+import {SeverityType} from "@/types/SeverityType";
 import {SeverityLevel} from "@/types/SeverityLevel";
 
 export type Severity = {
-  addiction: Addiction,
+  type: SeverityType,
   level: SeverityLevel
 }

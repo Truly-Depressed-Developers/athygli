@@ -3,7 +3,7 @@
 import {Accordion, AccordionDetails, AccordionSummary, AccordionActions, Button, Typography} from "@mui/material";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-type Props<T> = T & {expanded: boolean, onClick: () => void};
+type Props<T> = T & {expanded: boolean, onClick: () => void, addButton: boolean};
 
 const SettingsGroupItem = <T extends Record<string, any>>(props: Props<T>) => {
   return (
@@ -22,7 +22,16 @@ const SettingsGroupItem = <T extends Record<string, any>>(props: Props<T>) => {
         </AccordionDetails>
 
         <AccordionActions>
-          <Button color="error" variant="outlined">Remove</Button>
+          {props.addButton ?
+              <Button sx={{textTransform: "none", color: "#018cfe", fontSize: 16}}>Select apps to apply</Button>
+              :
+            <Button variant="outlined" style={{
+              borderColor: "#6C2928",
+              backgroundColor: "#6C2928",
+              color: "white",
+              borderRadius: 8,
+            }}>Delete</Button>
+          }
         </AccordionActions>
       </Accordion>
     </div>

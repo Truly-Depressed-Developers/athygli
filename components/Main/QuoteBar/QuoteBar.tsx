@@ -3,7 +3,7 @@ import React from 'react'
 import Image from 'next/image';
 
 type QuoteProps = {
-    text: string
+    text: any
 }
 
 export const QuoteBar: React.FC<{ quoteData: QuoteProps }> = ({ quoteData }) => {

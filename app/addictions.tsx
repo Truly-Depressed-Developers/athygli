@@ -1,8 +1,8 @@
-import {Addiction, AppState} from "@/types/Addiction";
+import {SeverityType, AppState} from "@/types/SeverityType";
 
 export const addictions: AppState = [
     {
-        addiction: Addiction.drinking,
+        addiction: SeverityType.drinking,
         data: [
             {date: "21-01-2024", times: 0},
             {date: "20-01-2024", times: 2},
@@ -16,7 +16,7 @@ export const addictions: AppState = [
         ]
     },
     {
-        addiction: Addiction.smoking,
+        addiction: SeverityType.smoking,
         data: [
             {date: "21-01-2024", times: 6},
             {date: "20-01-2024", times: 2},
@@ -30,15 +30,15 @@ export const addictions: AppState = [
         ]
     },
     {
-        addiction: Addiction.music,
+        addiction: SeverityType.music,
         data: []
     },
     {
-        addiction: Addiction.energyDrinks,
+        addiction: SeverityType.energyDrinks,
         data: []
     },
     {
-        addiction: Addiction.drugs,
+        addiction: SeverityType.drugs,
         data: []
     },
 ];
